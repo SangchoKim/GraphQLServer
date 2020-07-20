@@ -1,5 +1,5 @@
 // 스키마에 정의되어 있는데로 함수를 통해 알맞은 액션을 실행하는 곳
-import { people, getById, getMovies, getMovie, addMovie, deleteMovies, getMoveiesByApi, } from '../db/db'
+import { people, getById, getMovies, getMovie, addMovie, deleteMovies, getMoveiesByApi, getMoveie, getSuggestedMovie} from '../db/db'
   
 
 const resolvers = {
@@ -9,6 +9,8 @@ const resolvers = {
         movies : () => getMovies(),
         movie : ( _ , {id}) => getMovie(id),
         moviesByAPI: (_ , {limit,rating}) => getMoveiesByApi(limit,rating),
+        getMovie: (_ , {id}) => getMoveie(id),
+        getSuggestedMovie: (_ , {id}) => getSuggestedMovie(id),
     },
     Mutation:{
         addMovie: ( _ ,{name,score}) => addMovie(name,score),

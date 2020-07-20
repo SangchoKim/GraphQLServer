@@ -1,9 +1,21 @@
  import defaultAxios from 'axios';
  
  const API_URL = 'https://yts.am/api/v2/list_movies.json?'; 
+ const API_DETAIL_URL = 'https://yts.mx/api/v2/movie_details.json?'; 
+ const API_SUGGEST_URL = 'https://yts.mx/api/v2/movie_suggestions.json?'; 
 
  const getMoveiesByApi = async(limit = 0 , rating = 0) => {
    const result = await defaultAxios.get(`${API_URL}limit=${limit<0?0:limit}&minimum_rating=${rating<0?0:rating}`);
+   return result.data.data.movies;
+ }
+
+ const getMoveie = async(id = 0) => {
+   const result = await defaultAxios.get(`${API_DETAIL_URL}movie_id=${id<0?0:id}`);
+   return result.data.data.movie;
+ }
+
+ const getSuggestedMovie = async(id = 0) => {
+   const result = await defaultAxios.get(`${API_SUGGEST_URL}movie_id=${id<0?0:id}`);
    return result.data.data.movies;
  }
  
@@ -105,6 +117,8 @@ export {
     getMovie,
     addMovie,
     deleteMovies,
-    getMoveiesByApi
+    getMoveiesByApi,
+    getMoveie,
+    getSuggestedMovie
 }
    

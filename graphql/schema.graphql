@@ -20,12 +20,24 @@ type MovieAPI {
     medium_cover_image:String!
 }
 
+type oneMovie {
+    id:Int!
+    title:String!
+    rating:Float!
+    summary:String!
+    medium_cover_image:String!
+    language:String!
+    description_full:String!
+}
+
 type Query{
     people:[Person]!
     person(id:Int!):Person
     movies:[Movie]!
     movie(id:Int!):Movie
     moviesByAPI(limit:Int , rating:Int):[MovieAPI]
+    getMovie(id:Int!):oneMovie
+    getSuggestedMovie(id:Int!):[oneMovie]
 }
 
 type Mutation {
